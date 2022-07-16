@@ -3,13 +3,8 @@ import emailjs from '@emailjs/browser';
 import './App.css';
   
 
-function App() {
+const App = () => {
   
-	const NameRef =  useRef(null);
-	const EmailRef = useRef(null);
-	const PhoneRef = useRef(null);
-	const SubjectRef = useRef(null);
-    const MessageRef =  useRef(null);
 	const form = useRef();
 
 
@@ -17,19 +12,6 @@ function App() {
 	  document.getElementById("contact-form").reset();
 	}
     
-    const handleSubmit = (event) => {
-        event.preventDefault()
-        const data = {
-			name: NameRef.current.value,
-			email: EmailRef.current.value,
-            phone: PhoneRef.current.value,
-			subject: SubjectRef.current.value,
-            message: MessageRef.current.value
-        }
-        alert( JSON.stringify(data) + "Your data ")
-		clearForm();
-    }
-	
 	const sendEmail = (e) => {
 		e.preventDefault();
 
@@ -38,6 +20,7 @@ function App() {
 			(result) => {
 			  console.log(result.text);
 			  alert("SUCCESS!");
+			  clearForm();
 			},
 			(error) => {
 			  console.log(error.text);
@@ -63,22 +46,21 @@ function App() {
 				name="name"
 				placeholder="James Adi"
                 required
-				ref={NameRef}
               />
             </div>
             <div className="col">
               <label for="email" className="form-label">Email</label>
-              <input className="form-control px-4 py-2" type="email" id="email" name="email" placeholder="jamesadam@gmail.com" required ref={EmailRef}/>
+              <input className="form-control px-4 py-2" type="email" id="email" name="email" placeholder="jamesadam@gmail.com" required/>
             </div>
           </div>
           <div className="row mb-4">
             <div className="col">
               <label for="phone" className="form-label">Phone</label>
-              <input className="form-control px-4 py-2" type="tel" id="phone" name="phone" placeholder="+1567834563222" required ref={PhoneRef}/>
+              <input className="form-control px-4 py-2" type="tel" id="phone" name="phone" placeholder="+1567834563222" required/>
             </div>
             <div className="col">
               <label for="subject" className="form-label">Subject</label>
-              <input className="form-control px-4 py-2" type="text" id="subject" name="subject" placeholder="Welcome" required ref={SubjectRef}/>
+              <input className="form-control px-4 py-2" type="text" id="subject" name="subject" placeholder="Welcome" required/>
             </div>
           </div>
           <div className="row mb-4">
@@ -91,7 +73,6 @@ function App() {
                 id="message"
 				placeholder="Hey awesome! hope you are doing great! well..."
                 required
-				ref={MessageRef}
               ></textarea>
               <div id="message-help" className="form-text">Max. 500 characters</div>
             </div>
