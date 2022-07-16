@@ -6,8 +6,6 @@ import './App.css';
 const App = () => {
   
 	const form = useRef();
-
-
 	const clearForm = () => { 
 	  document.getElementById("contact-form").reset();
 	}
